@@ -10,6 +10,7 @@ import Modal from 'react-bootstrap/Modal'
 import Accordion from 'react-bootstrap/Accordion'
 import { Form, Badge } from 'react-bootstrap'
 import './inicio.scss'
+import Banner1 from '../../../img/banner1.jpg'
 import Foto1 from '../../../img/foto_1.jpg'
 import Foto2 from '../../../img/foto_2.jpg'
 import Foto3 from '../../../img/foto_3.jpg'
@@ -126,13 +127,10 @@ const WebInicio = () => {
                                     <Carousel.Item>
                                         <img
                                             className="d-block w-100"
-                                            src="https://placeimg.com/1000/300/nature"
+                                            src={`${URL}${Banner1}`}
                                             alt="First slide"
                                         />
-                                        <Carousel.Caption>
-                                            <h3>First slide label</h3>
-                                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                        </Carousel.Caption>
+                                       
                                     </Carousel.Item>
                                     <Carousel.Item>
                                         <img
