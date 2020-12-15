@@ -1,0 +1,133 @@
+@import "../../../sass/app.scss";
+
+.sub_inicio {
+  text-align: center;
+  padding: 6px 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  @include responsive(celular_p) {
+    font-size: $font_celular_p;
+  }
+  @include responsive(celular_l) {
+    font-size: $font_celular_l;
+  }
+  @include responsive(tablet) {
+    font-size: $font_tablet;
+  }
+  @include responsive(pc) {
+    font-size: $font_pc;
+  }
+  @include responsive(televisor) {
+    font-size: $font_televisor;
+  }
+}
+
+.sub2_inicio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  min-height: 208px;
+  background: rgba(62, 95, 140, 1);
+  background: -moz-linear-gradient(
+    left,
+    rgba(62, 95, 140, 1) 0%,
+    rgba(29, 44, 65, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    right top,
+    color-stop(0%, rgba(62, 95, 140, 1)),
+    color-stop(100%, rgba(29, 44, 65, 1))
+  );
+  background: -webkit-linear-gradient(
+    left,
+    rgba(62, 95, 140, 1) 0%,
+    rgba(29, 44, 65, 1) 100%
+  );
+  background: -o-linear-gradient(
+    left,
+    rgba(62, 95, 140, 1) 0%,
+    rgba(29, 44, 65, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    left,
+    rgba(62, 95, 140, 1) 0%,
+    rgba(29, 44, 65, 1) 100%
+  );
+  background: linear-gradient(
+    to right,
+    rgba(62, 95, 140, 1) 0%,
+    rgba(29, 44, 65, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3e5f8c', endColorstr='#1d2c41', GradientType=1 );
+}
+.sub2_inicio ul {
+  list-style: none;
+}
+
+.sub2_inicio ul li:before {
+  content: "✓ ";
+}
+
+
+.inicio_card_header {
+  color: $btn_inicio;
+  font-weight: bold;
+  padding: 10px !important;
+  // font-family: "fjalla_oneregular";
+  cursor: pointer;
+  @include responsive(celular_p) {
+    font-size: 14px;
+  }
+  @include responsive(celular_l) {
+    font-size: 14px;
+  }
+  @include responsive(tablet) {
+    font-size: 16px;
+  }
+  @include responsive(pc) {
+    font-size: 16px;
+  }
+  @include responsive(televisor) {
+    font-size: 16px;
+  }
+}
+.inicio_card_body {
+  // font-family: "noto_sansregular";
+  // font-weight: 400;
+  @include responsive(celular_p) {
+    font-size: 14px;
+  }
+  @include responsive(celular_l) {
+    font-size: 14px;
+  }
+  @include responsive(tablet) {
+    font-size: 16px;
+  }
+  @include responsive(pc) {
+    font-size: 16px;
+  }
+  @include responsive(televisor) {
+    font-size: 16px;
+  }
+}
+.preguntas_inicio {
+  padding: 10px;
+  background-color: $plomo;
+}
+.preguntas_inicio h5 {
+  border: 1px solid $color_rojo;
+  border-left: 8px solid $color_rojo;
+  padding: 5px;
+}
+.preguntas_inicio h5 span:nth-of-type(1) {
+  color: $color_rojo;
+}
+.preguntas_inicio h5 span:nth-of-type(2) {
+  color: $btn_inicio;
+}
+.col_inicio a{
+  text-decoration: none;
+  color:$color_blanco;
+}

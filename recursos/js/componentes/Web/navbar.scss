@@ -1,0 +1,56 @@
+@import "../../../sass/app.scss";
+
+.img_navbar {
+  width: 100%;
+  padding: 5px;
+}
+.navbar_nuevo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  height: 100%;
+}
+
+.navbar_nuevo a {
+  flex-grow: 1;
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+  color: $color_blanco;
+  font-family: "poetsen_oneregular";
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+  border-left: 1px solid $color_blanco;
+  text-decoration: none;
+  color: $color_blanco;
+}
+.navbar_nuevo a:hover {
+  background-color: $btn_inicio_hover;
+  text-decoration: none;
+  color: $color_blanco;
+}
+.navbar_nuevo a:nth-of-type(6) {
+  border-right: 1px solid $color_blanco;
+}
+
+.navbar_nuevo a:nth-of-type(7) {
+  line-height: 50px;
+}
+#container_navbar_nuevo {
+  background-color: $btn_inicio;
+}
+.navbar_nuevo a:nth-of-type(4) {
+  background-color: $color_rojo;
+}
+.navbar_nuevo a:nth-of-type(4):hover {
+  background-color: $color_rojo_hover;
+}
+.navbar_nuevo_responsive {
+  background-color: $btn_inicio !important;
+}
+.navbar_nuevo_responsive .navbar-brand {
+  color: $color_blanco !important;
+}
+.navbar_nuevo_responsive .nav-link {
+  color: $color_blanco !important;
+}

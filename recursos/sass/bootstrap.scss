@@ -1,0 +1,129 @@
+@import "~bootstrap/scss/bootstrap";
+@import "../sass/app.scss";
+@import "../sass/variables.scss";
+
+
+@font-face {
+  font-family: "poetsen_oneregular";
+  src: url("#{$url}recursos/fonts/poetsenone-regular-webfont.woff2")
+      format("woff2"),
+    url("#{$url}recursos/fonts/poetsenone-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "fjalla_oneregular";
+  src: url("#{$url}recursos/fonts/fjallaone-regular-webfont.woff2")
+      format("woff2"),
+    url("#{$url}recursos/fonts/fjallaone-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "noto_sansbold";
+  src: url("#{$url}recursos/fonts/notosans-bold-webfont.woff2") format("woff2"),
+    url("#{$url}recursos/fonts/notosans-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "noto_sansbold_italic";
+  src: url("#{$url}recursos/fonts/notosans-bolditalic-webfont.woff2")
+      format("woff2"),
+    url("#{$url}recursos/fonts/notosans-bolditalic-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "noto_sansitalic";
+  src: url("#{$url}recursos/fonts/notosans-italic-webfont.woff2")
+      format("woff2"),
+    url("#{$url}recursos/fonts/notosans-italic-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "noto_sansregular";
+  src: url("#{$url}recursos/fonts/notosans-regular-webfont.woff2")
+      format("woff2"),
+    url("#{$url}recursos/fonts/notosans-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+h5,
+h4,
+h3 {
+  color: $btn_inicio;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+p {
+  margin-bottom: 10px !important;
+}
+.div_relativo {
+  position: relative;
+  padding: 10px;
+  border: 1px solid $color_borde;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.div_relativo_s {
+  position: relative;
+  padding: initial !important;
+  border: initial !important;
+  margin-top: initial !important;
+  margin-bottom: initial !important;
+}
+.div_relativo_s p {
+  width: 100% !important;
+}
+.div_relativo img {
+  width: 100%;
+}
+.div_relativo p {
+  padding: 5px;
+  position: absolute;
+  color: $color_blanco;
+  bottom: 10px;
+  width: calc(100% - 20px);
+  text-align: center;
+  background-color: $transparente;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+  font-family: "poetsen_oneregular";
+  @include responsive(celular_p) {
+    font-size: 14px;
+  }
+  @include responsive(celular_l) {
+    font-size: 14px;
+  }
+  @include responsive(tablet) {
+    font-size: 16px;
+  }
+  @include responsive(pc) {
+    font-size: 18px;
+  }
+  @include responsive(televisor) {
+    font-size: 18px;
+  }
+}
+.badge {
+  font-size: 85% !important;
+  margin-bottom: 10px !important;
+  font-weight: initial !important;
+}
+.btn_inicio {
+  border-radius: initial !important;
+  background-color: $btn_inicio !important;
+  border: 0px solid transparent !important;
+}
+.btn_inicio:hover {
+  background-color: $btn_inicio_hover !important;
+}
+.btn_inicio:focus {
+  box-shadow: initial !important;
+}

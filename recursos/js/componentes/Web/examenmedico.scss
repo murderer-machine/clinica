@@ -1,0 +1,31 @@
+@import "../../../sass/app.scss";
+.em_header div:nth-of-type(1) {
+  background-color: #76879f;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  padding: 20px;
+  color: $color_blanco !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+.em_header div:nth-of-type(2) {
+  background-color: #546071;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  padding: 20px;
+  color: $color_blanco !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+.container_examen_medico button {
+  border-radius: 50px !important;
+}
+.container_examen_medico ul:nth-of-type(1) {
+  list-style-image: url("#{$url}recursos/img/check.svg");
+}
+.em_p_direccion::before {
+  display: inline-block;
+  content: " ";
+  width: 15px;
+  height: 15px;
+  background-image: url("#{$url}recursos/img/place.svg");
+}
