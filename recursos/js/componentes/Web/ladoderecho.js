@@ -101,7 +101,7 @@ const LadoDerecho = () => {
                     </Card>
                     <Card>
                         <Accordion.Toggle as={Card.Header} className="inicio_card_header" eventKey="1">
-                        Si mi DNI no es de Arequipa, ¿puedo realizar el examen médico para brevete en un centro médico de Arequipa?                              </Accordion.Toggle>
+                            Si mi DNI no es de Arequipa, ¿puedo realizar el examen médico para brevete en un centro médico de Arequipa?                              </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                             <Card.Body className="inicio_card_body">No, desde Julio del 2018, esto ya no es posible. El examen médico para brevete debe ser rendido dentro del departamento que señala su DNI o Carné de Extranjería.</Card.Body>
                         </Accordion.Collapse>
@@ -111,16 +111,16 @@ const LadoDerecho = () => {
                             ¿Cómo puedo obtener el duplicado de mi licencia de conducir?                                </Accordion.Toggle>
                         <Accordion.Collapse eventKey="2">
                             <Card.Body className="inicio_card_body">
-                            Para obtener un duplicado de su licencia de conducir por pérdida o robo,
-                             se deben seguir los siguientes pasos:
-                             <ul>
-                                 <li>Presentación de una declaración jurada de pérdida o robo de la Licencia de Conducir, o devolución de la Licencia de Conducir deteriorada</li>    
-                                 <li>Pago por derecho de tramitación: S/ 50.40 en la caja de la SGTT.</li>
-                             </ul>
-                                         </Card.Body>
+                                Para obtener un duplicado de su licencia de conducir por pérdida o robo,
+                                se deben seguir los siguientes pasos:
+                                <ul>
+                                    <li>Presentación de una declaración jurada de pérdida o robo de la Licencia de Conducir, o devolución de la Licencia de Conducir deteriorada</li>
+                                    <li>Pago por derecho de tramitación: S/ 50.40 en la caja de la SGTT.</li>
+                                </ul>
+                            </Card.Body>
                         </Accordion.Collapse>
                     </Card>
-                   
+
                     <Card>
                         <Accordion.Toggle as={Card.Header} className="inicio_card_header" eventKey="4">
                             ¿Cuánto tiempo de vigencia tiene el examen médico para brevete?

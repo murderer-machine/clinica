@@ -13,5 +13,6 @@ require('./componentes/Web/ejemplo')
 require('./componentes/Web/examenmedicobrevet')
 require('./componentes/Web/examenmedicobreveta_iv')
 require('./componentes/Web/examenmedicobreveta_recategorizacion')
+require('./componentes/Web/ubicanos')
 
 require('./componentes/Auth/index/index')

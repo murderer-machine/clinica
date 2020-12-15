@@ -105,6 +105,11 @@ class Model {
         return new static();
     }
 
+    public function limitar($numero) {
+        self::$consulta = self::$consulta . " LIMIT $numero";
+        return new static();
+    }
+
     public static function wherec($datos, $concatenar = false) {
         self::$consulta = self::$consulta;
         $consulta = '';

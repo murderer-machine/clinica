@@ -59,7 +59,7 @@ const ExamenMedico = () => {
                         <Row className="justify-content-center">
                             <Col xs={12} sm={12} md={8}>
                                 <ul>
-                                    <li>Ubicación frente al Touring y al MTC de Lince.</li>
+                                    <li>Ubicación a espaldas del MTC paralela a la Av. Kennedy</li>
                                     <li>Eliges fecha y hora para tu examen médico.</li>
                                     <li>Puedes pagar con tu tarjeta de crédito o de débito.</li>
                                     <li>Puedes reprogramar tu cita.</li>

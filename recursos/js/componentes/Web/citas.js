@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import Modal from 'react-bootstrap/Modal'
 import './citas.scss'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
@@ -28,9 +29,9 @@ function getSteps() {
     ];
 }
 const Citas = () => {
-   
-    const [horarios,sethorarios] = useState([])
-        
+
+    const [horarios, sethorarios] = useState([])
+
     const [horariodata, setHorariodata] = useState([])
     const [datos, setDatos] = useState({
         id_unico: '',
@@ -42,6 +43,7 @@ const Citas = () => {
         celular: '',
         correo: '',
         modopago: '',
+        codigo_autorizacion: '',
     })
     const CambiarFecha = (date) => {
         setDatos({
@@ -61,7 +63,7 @@ const Citas = () => {
             }).then(res => res.json())
                 .catch(error => console.error('Error:', error))
                 .then(response => {
-                    console.log(response)
+
                     sethorarios(response);
                 });
         }
@@ -76,7 +78,7 @@ const Citas = () => {
             }).then(res => res.json())
                 .catch(error => console.error('Error:', error))
                 .then(response => {
-                    console.log(response)
+
                     setHorariodata(response);
                 });
         }
@@ -116,7 +118,39 @@ const Citas = () => {
     const steps = getSteps()
     const [errordatos, seterrordatos] = useState(false)
     const [errordatos_0, seterrordatos_0] = useState(false)
+    ////
+    const [datosvalidacion, setdatosvalidacion] = useState({
+        dni: true,
+        nombres: true,
+        apellidos: true,
+        celular: true,
+        correo: true
+    })
+    const ValidarDatos_exReg = () => {
+
+        let dni = new RegExp("^([0-9]{8})+$")
+        let nombres = new RegExp("^[a-z*A-Z ]+$")
+        let apellidos = new RegExp("^[a-z*A-Z ]+$")
+        let celular = new RegExp("^([0-9]{9})+$")
+        let correo = new RegExp("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")
+        setdatosvalidacion({
+            dni: dni.test(datos.dni),
+            nombres: nombres.test(datos.nombres),
+            apellidos: apellidos.test(datos.apellidos),
+            celular: celular.test(datos.celular),
+            correo: correo.test(datos.correo)
+        })
+        return dni.test(datos.dni) &&
+            nombres.test(datos.nombres) &&
+            apellidos.test(datos.apellidos) &&
+            celular.test(datos.celular) &&
+            correo.test(datos.correo)
+    }
+    ////
+
+
     const handleNext = () => {
+
         if (activeStep === 0) {
             if (datos.fecha === '' ||
                 datos.hora === ''
@@ -126,25 +160,28 @@ const Citas = () => {
                 seterrordatos_0(false)
                 setActiveStep((prevActiveStep) => prevActiveStep + 1)
             }
-        } else {
-            if (activeStep === 1) {
-                if (datos.dni === '' ||
-                    datos.nombres === '' ||
-                    datos.apellidos === '' ||
-                    datos.celular === '' ||
-                    datos.correo === '') {
-                    seterrordatos(true)
-                } else {
-                    seterrordatos(false)
-                    setActiveStep((prevActiveStep) => prevActiveStep + 1)
-                }
+        }
+
+        if (activeStep === 1) {
+            if (datos.dni === '' ||
+                datos.nombres === '' ||
+                datos.apellidos === '' ||
+                datos.celular === '' ||
+                datos.correo === '' || !ValidarDatos_exReg()) {
+
+                seterrordatos(true)
             } else {
+                seterrordatos(false)
                 setActiveStep((prevActiveStep) => prevActiveStep + 1)
             }
         }
-
+        if (activeStep === 2) {
+            handleShow()
+        }
 
     };
+
+
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
@@ -164,6 +201,7 @@ const Citas = () => {
     const [datosrecibidos, setdatosrecibidos] = useState({})
     const EnviarDatos = () => {
         var url = `${URL}Web/EnviarDatosCita`
+
         fetch(url, {
             method: 'POST',
             body: JSON.stringify(datos),
@@ -174,9 +212,28 @@ const Citas = () => {
             .catch(error => console.error('Error:', error))
             .then(response => {
                 setdatosrecibidos(response)
-                handleNext()
+                setActiveStep((prevActiveStep) => prevActiveStep + 1)
             });
 
+    }
+    const isWeekday = date => {
+
+        const day = date.getDay()
+        return day !== 0
+    }
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const Finalizar = () => {
+        if (datos.codigo_autorizacion === '') {
+        } else {
+
+            handleClose()
+            EnviarDatos()
+
+        }
     }
     return (
         <>
@@ -226,14 +283,23 @@ const Citas = () => {
                                             <Form.Group>
                                                 <Form.Label>Seleccione una fecha :</Form.Label><br />
                                                 <DatePicker
-                                                    onChange={CambiarFecha}
-                                                    minDate={new Date()}
                                                     selected={datos.fecha}
+                                                    onChange={date => CambiarFecha(date)}
+                                                    minDate={new Date()}
                                                     name="startDate"
                                                     dateFormat="yyyy-MM-dd"
                                                     locale="es"
                                                     placeholderText="Seleccione una fecha"
+                                                    filterDate={isWeekday}
+                                                    className="form-control"
                                                 />
+                                                {/* <DatePicker
+                                                    selected={datos.fecha}
+                                                    onChange={date => CambiarFecha(date)}
+                                                    filterDate={isWeekday}
+                                                    placeholderText="Select a weekday"
+                                                /> */}
+
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label>Seleccione un horario :</Form.Label>
@@ -254,7 +320,7 @@ const Citas = () => {
                                                         )
                                                     }
                                                 </Row>
-                                                
+
                                             </Form.Group>
                                         </Col>
                                     </Row>
@@ -263,27 +329,62 @@ const Citas = () => {
                                     <Row className="justify-content-center">
                                         <Col xs={12} sm={12} md={8} lg={8}>
                                             {errordatos ? (<>
-                                                <Alert severity="error">Falta completar campos</Alert>
+                                                <Alert severity="error">Campos vacíos</Alert>
                                             </>) : (<></>)}
                                             <Form.Group>
                                                 <Form.Label>DNI :</Form.Label>
                                                 <Form.Control type="number" placeholder="Ingrese número de documento" onChange={handleInputChange} name="dni" value={datos.dni} />
+                                                {!datosvalidacion.dni ? (
+                                                    <>
+                                                        <Form.Text className="text-danger">
+                                                            *DNI 8 dígitos
+                                                    </Form.Text>
+                                                    </>
+                                                ) : (<></>)}
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label>Nombres :</Form.Label>
                                                 <Form.Control type="text" placeholder="Ingrese sus nombres" onChange={handleInputChange} name="nombres" value={datos.nombres} />
+                                                {!datosvalidacion.nombres ? (
+                                                    <>
+                                                        <Form.Text className="text-danger">
+                                                            *Solo se aceptan letras
+                                                    </Form.Text>
+                                                    </>
+                                                ) : (<></>)}
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label>Apellidos :</Form.Label>
                                                 <Form.Control type="text" placeholder="Ingrese sus apellidos" onChange={handleInputChange} name="apellidos" value={datos.apellidos} />
+                                                {!datosvalidacion.apellidos ? (
+                                                    <>
+                                                        <Form.Text className="text-danger">
+                                                            *Solo se aceptan letras
+                                                    </Form.Text>
+                                                    </>
+                                                ) : (<></>)}
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label>Celular :</Form.Label>
                                                 <Form.Control type="number" placeholder="Ingrese su celular" onChange={handleInputChange} name="celular" value={datos.celular} />
+                                                {!datosvalidacion.celular ? (
+                                                    <>
+                                                        <Form.Text className="text-danger">
+                                                            *Solo números y 9 dígitos
+                                                    </Form.Text>
+                                                    </>
+                                                ) : (<></>)}
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label>Correo :</Form.Label>
                                                 <Form.Control type="email" placeholder="Ingrese un correo válido" onChange={handleInputChange} name="correo" value={datos.correo} />
+                                                {!datosvalidacion.correo ? (
+                                                    <>
+                                                        <Form.Text className="text-danger">
+                                                            *Ingrese un correo válido
+                                                    </Form.Text>
+                                                    </>
+                                                ) : (<></>)}
                                             </Form.Group>
                                         </Col>
                                     </Row>,
@@ -349,7 +450,7 @@ const Citas = () => {
                                 </Button>
                                 </Col>
                                 <Col xs={6} sm={6} md={4} lg={2}>
-                                    <Button variant="primary" onClick={activeStep === steps.length - 1 ? EnviarDatos : handleNext} block className="btn_inicio">
+                                    <Button variant="primary" onClick={handleNext} block className="btn_inicio">
                                         {activeStep === steps.length - 1 ? 'Finalizar' : 'Siguiente Paso'}
                                     </Button>
                                 </Col>
@@ -360,8 +461,26 @@ const Citas = () => {
                         </div>
                     )}
             </Container>
+        
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Ingrese Código de Autorización</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form.Control type="text" placeholder="Código de Autorización" onChange={handleInputChange} name="codigo_autorizacion" value={datos.codigo_autorizacion} />
 
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" className="btn_inicio" type="button" onClick={Finalizar}>Ingresar</Button>
+                </Modal.Footer>
+            </Modal>
         </>
+
     );
 }
 export default Citas;

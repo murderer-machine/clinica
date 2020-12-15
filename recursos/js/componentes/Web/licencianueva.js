@@ -56,12 +56,12 @@ const LicenciaNueva = () => {
                             <Col xs={12}>
                                 <h4>3° Paso: Programar tu cita para el <b>examen de reglas de tránsito.</b></h4>
                                 <p>Ahora deberás programar tu cita para el examen de reglas de tránsito.</p>
-                                <p>Antes de ello, has debido prepararte para rendir el examen. Lo puedes hacer practicando en nuestro<br/>
-                                    <a href="">Simulacro de Examen de Reglas:<br /> Tiene Modo Entrenamiento y Modo Simulacro</a>
+                                <p>Antes de ello, has debido prepararte para rendir el examen. Lo puedes hacer practicando en<br/>
+                                    <a href="https://sierdgtt.mtc.gob.pe/" target='_blank'>Simulacro de Examen de Reglas:<br /> Tiene Modo Entrenamiento y Modo Simulacro</a>
                                 </p>
                             </Col>
                             <Col xs={10} sm={10} md={8}>
-                                <a href={`${URL}Web/ExamenMedico`} >
+                                <a href="https://sierdgtt.mtc.gob.pe/" target='_blank' >
                                     <div className="div_relativo">
                                         <Image src={`${URL}${Foto4}`} />
                                         <p className="m-0 text-uppercase py-2">simulacro de exámen<br /> de reglas</p>

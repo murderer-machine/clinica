@@ -11,8 +11,8 @@ class Web_controller extends Controller {
     }
 
     public function LicenciaNueva() {
-        echo 'hola';
-        //$this->view->render('Web/licencianueva');
+
+        $this->view->render('Web/licencianueva');
     }
 
     public function Revalidacion() {
@@ -37,6 +37,10 @@ class Web_controller extends Controller {
 
     public function Citas() {
         $this->view->render('Web/citas');
+    }
+
+    public function Ubicanos() {
+        $this->view->render('Web/ubicanos');
     }
 
     public function AgregarConsultas() {
@@ -79,7 +83,7 @@ class Web_controller extends Controller {
                 $apellidos = mb_strtolower($datos->apellidos),
                 $celular = $datos->celular,
                 $correo = mb_strtolower($datos->correo),
-                $id_unico = $datos->id_unico
+                $id_unico = $datos->codigo_autorizacion
         );
         $resultado = $citas->create();
         if ($resultado['error'] === 0) {
@@ -95,12 +99,21 @@ class Web_controller extends Controller {
         $this->Verifica_POST();
         $datos = $this->Verifica_JSON(file_get_contents("php://input"));
         if ($datos->fecha === '') {
+
             $horas = Horas::select()->run();
         }
         if ($datos->fecha !== '' && substr($datos->fecha, 0, 10) == fecha) {
-            $horas = Horas::select()->where([['hora', hora, '>']])->run();
+            if ($this->get_nombre_dia($datos->fecha, 0, 10) === 'Sabado') {
+                $horas = Horas::select()->where([['hora', hora, '>']])->limitar(10)->run();
+            } else {
+                $horas = Horas::select()->where([['hora', hora, '>']])->run();
+            }
         } else {
-            $horas = Horas::select()->run();
+            if ($this->get_nombre_dia($datos->fecha, 0, 10) === 'Sabado') {
+                $horas = Horas::select()->limitar(10)->run();
+            } else {
+                $horas = Horas::select()->run();
+            }
         }
         $horas_ = [];
         foreach ($horas as $hora) {
@@ -115,7 +128,7 @@ class Web_controller extends Controller {
         $citas = Citas::select()->where([['fecha', substr($resultado->fecha, 0, 10)]])->run();
         $horas = array();
         foreach ($citas as $value) {
-            array_push($horas, $value['hora']);
+            array_push($horas, Web_controller::CambiarTipo($value['hora']));
         }
         echo json_encode($horas);
     }
@@ -158,6 +171,28 @@ class Web_controller extends Controller {
             echo json_encode($ret);
         }
         //echo json_encode($_FILES['avatar']['name']);
+    }
+
+    public function get_nombre_dia($fecha = fecha) {
+        $fechats = strtotime($fecha); //pasamos a timestamp
+//el parametro w en la funcion date indica que queremos el dia de la semana
+//lo devuelve en numero 0 domingo, 1 lunes,....
+        switch (date('w', $fechats)) {
+            case 0: return "Domingo";
+                break;
+            case 1: return "Lunes";
+                break;
+            case 2: return "Martes";
+                break;
+            case 3: return "Miercoles";
+                break;
+            case 4: return "Jueves";
+                break;
+            case 5: return "Viernes";
+                break;
+            case 6: return "Sabado";
+                break;
+        }
     }
 
 }

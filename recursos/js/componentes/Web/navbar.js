@@ -29,7 +29,7 @@ const NavbarWeb = () => {
                         <a href={`${URL}Web/ExamenMedico`}>RESERVA CITAS <br /> ONLINE</a>
                         <a href={`${URL}Web/ExamenMedicoBrevetA_IV`}>EXAMEN MÉDICO<br /> A-IV</a>
                         <a href={`${URL}Web/ExamenMedicoBrevetRecategorizacion`}>EXAMEN MÉDICO <br />RECATEGORIZACIÓN</a>
-                        <a href="">UBÍCANOS</a>
+                        <a href={`${URL}Web/Ubicanos`}>UBÍCANOS</a>
                     </div>
                 </Container>
             </Container>
@@ -44,9 +44,11 @@ const NavbarWeb = () => {
                                     <Nav.Link href={`${URL}Web/LicenciaNueva`}>EXAMEN MÉDICO BREVETE LICENCIA NUEVA</Nav.Link>
                                     <Nav.Link href={`${URL}Web/Revalidacion`}>EXAMEN MÉDICO BREVETE REVALIDACIÓN</Nav.Link>
                                     <Nav.Link href={`${URL}Web/ExamenMedico`}>RESERVA CITAS ONLINE</Nav.Link>
-                                    <Nav.Link href="#link">EXAMEN MÉDICO BREVETE</Nav.Link>
-                                    <Nav.Link href="#link">UBÍCANOS</Nav.Link>
-                                    <Nav.Link href="#link">PREGUNTAS FRECUENTES</Nav.Link>
+                                    <Nav.Link href={`${URL}Web/ExamenMedicoBrevet`}>EXAMEN MÉDICO BREVETE</Nav.Link>
+                                    <Nav.Link href={`${URL}Web/ExamenMedicoBrevetA_IV`}>EXAMEN MÉDICO A-IV</Nav.Link>
+                                    <Nav.Link href={`${URL}Web/ExamenMedicoBrevetRecategorizacion`}>EXAMEN MÉDICO RECATEGORIZACIÓN</Nav.Link>
+                                    <Nav.Link href={`${URL}Web/Ubicanos`}>UBÍCANOS</Nav.Link>
+
                                 </Nav>
                             </Navbar.Collapse>
                         </Navbar>
