@@ -12,7 +12,7 @@
     <div id="navbar_web"></div>
     <div id="web_inicio"></div>
     <div id="footer_web"></div>
-    <script src="<?php echo URL?>bundle.js?<?php echo uniqid()?>"></script>
+    <script src="<?php echo URL?>bundle.js?16122020"></script>
 </body>
 
 </html>
