@@ -109,7 +109,15 @@ class Model {
         self::$consulta = self::$consulta . " LIMIT $numero";
         return new static();
     }
-
+ public function orderBy_nuevo($datos) {
+        self::$consulta = self::$consulta . " ORDER BY ";
+        $count = count($datos) - 1;
+        foreach ($datos as $key => $dato) {
+            $condicion = $count === $key ? '' : ',';
+            self::$consulta = self::$consulta . "$dato[0] $dato[1]$condicion";
+        }
+        return new static();
+    }
     public static function wherec($datos, $concatenar = false) {
         self::$consulta = self::$consulta;
         $consulta = '';

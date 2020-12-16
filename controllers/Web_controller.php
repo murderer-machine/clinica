@@ -94,7 +94,24 @@ class Web_controller extends Controller {
         }
         echo json_encode($resutaldo_citas);
     }
-
+public function EnviarDatosCita2() {
+        $this->Verifica_POST();
+        $datos = $this->Verifica_JSON(file_get_contents("php://input"));
+        $citas = new Citas(
+                $id = null,
+                $fecha = $datos->fecha,
+                $hora = $datos->hora,
+                $dni = mb_strtolower($datos->dni),
+                $nombres = mb_strtolower($datos->nombres),
+                $apellidos = mb_strtolower($datos->apellidos),
+                $celular = $datos->celular,
+                $correo = mb_strtolower($datos->correo),
+                $id_unico = $datos->codigo_autorizacion
+        );
+        $resultado = $citas->create();
+        
+        echo json_encode($resultado['error']);
+    }
     public function Horas() {
         $this->Verifica_POST();
         $datos = $this->Verifica_JSON(file_get_contents("php://input"));
